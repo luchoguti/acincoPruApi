@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Balances;
 use Illuminate\Http\Request;
+use Webpatser\Uuid\Uuid;
 
 class BalanceController extends Controller
 {
@@ -26,7 +27,7 @@ class BalanceController extends Controller
     public function store(Request $request)
     {
         try {
-            $uuidBalance = \Faker\Provider\Uuid::uuid ();
+            $uuidBalance = Uuid::generate ()->string;
             $request->request->add (['id_balances' => $uuidBalance]);
             Balances::create ($request->all ());
             return response()->json($request->all(), 201);

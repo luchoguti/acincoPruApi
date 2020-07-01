@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ApiCollection;
 use App\Models\AccountingSeat;
 use Illuminate\Http\Request;
+use Webpatser\Uuid\Uuid;
 
 class AccountingSeatController extends Controller
 {
@@ -27,7 +28,7 @@ class AccountingSeatController extends Controller
     public function store(Request $request)
     {
         try {
-            $uuidAccount = \Faker\Provider\Uuid::uuid ();
+            $uuidAccount = Uuid::generate ()->string;
             $request->request->add (['id_accounting_seat' => $uuidAccount]);
             AccountingSeat::create ($request->all ());
             return response()->json($request->all(), 201);

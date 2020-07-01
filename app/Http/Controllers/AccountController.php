@@ -7,6 +7,7 @@ use App\Models\Accounts;
 use App\Models\AccountToAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Webpatser\Uuid\Uuid;
 
 class AccountController extends Controller
 {
@@ -30,7 +31,7 @@ class AccountController extends Controller
     {
 
         try {
-            $uuidAccount = \Faker\Provider\Uuid::uuid ();
+            $uuidAccount = Uuid::generate ()->string;
             $request->request->add (['id_accounts' => $uuidAccount]);
             $request->request->remove ('password_account');
             $password_account = bcrypt ($request->password_account);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Webpatser\Uuid\Uuid;
 
 class TransactionController extends Controller
 {
@@ -26,7 +27,7 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         try {
-            $uuidTransaction = \Faker\Provider\Uuid::uuid ();
+            $uuidTransaction = Uuid::generate ()->string;
             $request->request->add (['id_transaction' => $uuidTransaction]);
             Transaction::create ($request->all ());
             return response()->json($request->all(), 201);
