@@ -25,6 +25,7 @@ class CreateAccountsTable extends Migration
             $table->unsignedBigInteger('type_account');
             $table->foreign('type_account')->references('id_type_account')->on('type_accounts')->onDelete('cascade');
             $table->char ('password_account');
+            $table->boolean ('state');
             $table->timestamps();
             $table->softDeletes ();
         });

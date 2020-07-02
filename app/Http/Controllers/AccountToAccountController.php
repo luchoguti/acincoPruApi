@@ -49,6 +49,7 @@ class AccountToAccountController extends Controller
     {
         return AccountToAccount::query ()
             ->where ('account_origin','=',$id)
+            ->whereNull('accounts.deleted_at')
             ->join ('accounts','accounts.id_accounts','=','account_to_accounts.account_association')
             ->join ('banks','banks.id_banks','=','accounts.banks')
             ->selectRaw ('account_to_accounts.id_account_to_account,account_origin,account_association,accounts.number_account as number_account_association,name_cardholder as name_cardholder_association,id_type_document as id_type_document_association,number_identification as number_identification_association,banks,banks.name_bank,type_account as type_account_association')

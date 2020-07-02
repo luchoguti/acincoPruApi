@@ -86,7 +86,7 @@ class AccountController extends Controller
     public function destroy($id)
     {
         try {
-            Accounts::query ()->find ($id)->delete();
+            Accounts::query ()->where ('id_accounts','=',$id)->delete();
             return response()->json('successfully deleted!', 201);
         }catch (\Exception $e) {
             return response()->json($e->getMessage (), 500);
@@ -99,6 +99,7 @@ class AccountController extends Controller
     public function accountRandom()
     {
         return Accounts::query ()
+            ->where ('state','=',true)
             ->join ('banks','banks.id_banks','=','accounts.banks')
             ->inRandomOrder ()->first ();
     }

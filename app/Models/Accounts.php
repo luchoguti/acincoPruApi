@@ -14,7 +14,7 @@ class Accounts extends Model
     protected $primaryKey = 'id_accounts';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'id_accounts','number_account','name_cardholder','id_type_document','number_identification','banks','type_account','password_account'
+        'id_accounts','number_account','name_cardholder','id_type_document','number_identification','banks','type_account','password_account','state'
     ];
 
     protected $hidden = [

@@ -18,6 +18,7 @@ $factory->define(\App\Models\Accounts::class, function (Faker $faker) {
         'number_identification'=>$faker->randomNumber (9),
         'banks'=>$bank->banks,
         'type_account'=>$typeAccount->type_account,
-        'password_account'=> bcrypt (1234)
+        'password_account'=> bcrypt (1234),
+        'state'=>true
     ];
 });
